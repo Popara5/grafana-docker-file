@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Grafana</title>
+</head>
+<body>
+    <h1>Hello, Grafana!</h1>
+    <p>This is your custom welcome page.</p>
+</body>
+</html>
+FROM grafana/grafana:latest
+
+# Copy index.html to the appropriate location
+COPY ./index.html /usr/share/grafana/public/views/
+
+EXPOSE 3000
+docker build -t my-grafana-image .
+docker run -d -p 3000:3000 --name=grafana my-grafana-image
